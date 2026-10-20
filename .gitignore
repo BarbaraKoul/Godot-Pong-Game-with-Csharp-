@@ -1,0 +1,16 @@
+# Godot 4 & Cache
+.godot/
+*.import/
+
+# Executables & Export Builds (από το export της Godot)
+*.exe
+*.pck
+*.console.exe
+data_Pong_windows_x86_64/
+
+# Mono / C# & VS Code build artifacts
+.vs/
+.vscode/
+bin/
+obj/
+*.csproj.user
