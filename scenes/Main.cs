@@ -4,7 +4,7 @@ using System;
 public partial class Main : Sprite2D
 {
 	public int[] score = new int[] { 0, 0 };
-	public int paddleSpeed=300;
+	public int paddleSpeed = 300;
 	private Button playAgainBtn;
 	private Label leftScoreLabel;
 	private Label rightScoreLabel;
@@ -19,7 +19,7 @@ public partial class Main : Sprite2D
 	}
 	public void _on_ball_timer_timeout()
 	{
-		GetNode<Ball>("Ball").NewBall();	
+		GetNode<Ball>("Ball").NewBall();
 	}
 	public void _on_score_left_body_entered(Node2D body)
 	{

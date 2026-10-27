@@ -18,30 +18,30 @@ public partial class Ball : CharacterBody2D
 	}
 
 	public override void _PhysicsProcess(double delta)
-{
-	KinematicCollision2D collision = MoveAndCollide(dir * speed * (float)delta);
-
-	if (collision != null)
 	{
-		Node collider = (Node)collision.GetCollider();
-		if (collider is StaticBody2D paddle && paddle.HasNode("ColorRect"))
-		{
-			float paddleHeight = paddle.GetNode<ColorRect>("ColorRect").Size.Y;
-			float hitOffset = (GlobalPosition.Y - paddle.GlobalPosition.Y) / (paddleHeight / 2f);
-			hitOffset = Mathf.Clamp(hitOffset, -1f, 1f);
+		KinematicCollision2D collision = MoveAndCollide(dir * speed * (float)delta);
 
-			float bounceAngle = hitOffset * MaxBounceAngle;
-			float directionX = collision.GetNormal().X > 0 ? 1f : -1f;
-
-			dir = new Vector2(directionX * Mathf.Cos(bounceAngle), Mathf.Sin(bounceAngle)).Normalized();
-		}
-		else
+		if (collision != null)
 		{
-			dir = dir.Bounce(collision.GetNormal()).Normalized();
+			Node collider = (Node)collision.GetCollider();
+			if (collider is StaticBody2D paddle && paddle.HasNode("ColorRect"))
+			{
+				float paddleHeight = paddle.GetNode<ColorRect>("ColorRect").Size.Y;
+				float hitOffset = (GlobalPosition.Y - paddle.GlobalPosition.Y) / (paddleHeight / 2f);
+				hitOffset = Mathf.Clamp(hitOffset, -1f, 1f);
+
+				float bounceAngle = hitOffset * MaxBounceAngle;
+				float directionX = collision.GetNormal().X > 0 ? 1f : -1f;
+
+				dir = new Vector2(directionX * Mathf.Cos(bounceAngle), Mathf.Sin(bounceAngle)).Normalized();
+			}
+			else
+			{
+				dir = dir.Bounce(collision.GetNormal()).Normalized();
+			}
+			speed += Accel;
 		}
-		speed += Accel;
 	}
-}
 
 	public void NewBall()
 	{

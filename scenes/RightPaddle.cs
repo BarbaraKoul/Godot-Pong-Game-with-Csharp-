@@ -8,7 +8,7 @@ public partial class RightPaddle : StaticBody2D
 	private float move_by;
 	private float win_height;
 	private float p_height;
-	
+
 	public override void _Ready()
 	{
 		win_height = GetViewportRect().Size.Y;
